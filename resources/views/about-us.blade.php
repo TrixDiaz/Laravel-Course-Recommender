@@ -29,15 +29,7 @@
 
 @livewire('header')
 
-@livewire('landing')
-
-@livewire('content')
-
-@livewire('feature')
-
-@livewire('comment')
-
-@livewire('faq')
+@livewire('about')
 
 @livewire('footer')
 
