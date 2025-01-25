@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Course;
+use App\Models\Feedback;
 use App\Models\Skill;
 use App\Models\User;
 
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
         Course::factory(10)->create();
         Skill::factory(10)->create();
+        Feedback::factory(10)->create();
 
         User::factory()->create([
             'name' => 'Test User',
