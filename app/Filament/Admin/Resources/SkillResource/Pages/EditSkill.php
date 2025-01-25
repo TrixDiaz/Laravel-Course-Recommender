@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Filament\Admin\Resources\CourseResource\Pages;
+namespace App\Filament\Admin\Resources\SkillResource\Pages;
 
-use App\Filament\Admin\Resources\CourseResource;
-use App\Models\Course;
+use App\Filament\Admin\Resources\SkillResource;
+use App\Models\Skill;
+use Filament\Actions;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
 
-class EditCourse extends EditRecord
+class EditSkill extends EditRecord
 {
-    protected static string $resource = CourseResource::class;
-
+    protected static string $resource = SkillResource::class;
 //    protected function getRedirectUrl(): string
 //    {
 //        return $this->getResource()::getUrl('index');
@@ -22,9 +22,9 @@ class EditCourse extends EditRecord
 
         $notification = Notification::make()
             ->success()
-            ->icon('heroicon-m-book-open')
-            ->title('Course Updated')
-            ->body("Course {$record->name} Updated Successfully!")
+            ->icon('heroicon-m-cube-transparent')
+            ->title('Skill Updated')
+            ->body("Skill {$record->name} Updated Successfully!")
             ->actions([
                 \Filament\Notifications\Actions\Action::make('view')
                     ->label('Mark as read')
@@ -45,19 +45,19 @@ class EditCourse extends EditRecord
     {
         return [
             \Filament\Actions\Action::make('is_active')
-                ->label(fn(Course $record) => $record->is_active ? 'Unpublish Course' : 'Publish Course')
-                ->action(function (Course $record) {
+                ->label(fn(Skill $record) => $record->is_active ? 'Unpublish Skill' : 'Publish Skill')
+                ->action(function (Skill $record) {
                     // Toggle the 'is_active' status
                     $record->update(['is_active' => !$record->is_active]);
 
                     // Send a notification after the update
                     Notification::make()
-                        ->title('Course Status Updated')
+                        ->title('Skill Status Updated')
                         ->success() // You can use other status like 'error', 'info', etc.
-                        ->body('The course has been ' . ($record->is_active ? 'published' : 'unpublished') . ' successfully.')
+                        ->body('The Skill has been ' . ($record->is_active ? 'published' : 'unpublished') . ' successfully.')
                         ->send();
                 }),
-            \Filament\Actions\DeleteAction::make(),
+            Actions\DeleteAction::make(),
         ];
     }
 }
