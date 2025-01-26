@@ -22,4 +22,14 @@ class Course extends Model
     {
         return $this->hasMany(CourseLevel::class);
     }
+
+    public function courseLevels()
+    {
+        return $this->hasMany(CourseLevel::class);
+    }
+
+    public function courseLevelSkill()
+    {
+        return $this->hasMany(CourseLevelSkill::class);
+    }
 }

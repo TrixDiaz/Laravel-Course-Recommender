@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -19,5 +20,15 @@ class Skill extends Model
     public function levels(): HasMany
     {
         return $this->hasMany(CourseLevel::class);
+    }
+
+    public function courseLevels(): BelongsToMany
+    {
+        return $this->belongsToMany(CourseLevel::class);
+    }
+
+    public function courseLevelSkill(): BelongsToMany
+    {
+        return $this->belongsToMany(CourseLevelSkill::class);
     }
 }

@@ -20,7 +20,6 @@ class CourseLevelFactory extends Factory
     {
         return [
             'course_id' => Course::factory(),
-            'skill_id' => Skill::factory(),
             'name' => $this->faker->word,
             'level' => $this->faker->numberBetween(1, 10),
         ];

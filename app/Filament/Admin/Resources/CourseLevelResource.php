@@ -35,12 +35,13 @@ class CourseLevelResource extends Resource
                             ->searchable()
                             ->preload()
                             ->native(false),
-                        Forms\Components\Select::make('skill_id')
-                            ->relationship('skill', 'name')
+                        Forms\Components\Select::make('skill')
+                            ->relationship('skills', 'name')
                             ->required()
                             ->searchable()
                             ->preload()
-                            ->native(false),
+                            ->native(false)
+                            ->multiple(),
                         Forms\Components\TextInput::make('level')
                             ->minValue(1)
                             ->maxValue(10)
@@ -59,8 +60,12 @@ class CourseLevelResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('course.name')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('skill.name')
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('courseLevelSkill.skill.name')
+                    ->sortable()
+                    ->listWithLineBreaks()
+                    ->bulleted()
+                    ->limitList(1)
+                    ->expandableLimitedList(),
                 Tables\Columns\TextColumn::make('level')
                     ->numeric()
                     ->sortable(),
