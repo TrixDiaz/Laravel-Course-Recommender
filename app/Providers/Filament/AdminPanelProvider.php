@@ -39,9 +39,10 @@ class AdminPanelProvider extends PanelProvider
                 'warning' => Color::Orange,
             ])
             ->navigationGroups([
-                NavigationGroup::make()->label('Courses'),
-                NavigationGroup::make()->label('Skills'),
-                NavigationGroup::make()->label('Feedbacks'),
+                NavigationGroup::make()->label('Courses')->collapsed(),
+                NavigationGroup::make()->label('Skills')->collapsed(),
+                NavigationGroup::make()->label('Feedbacks')->collapsed(),
+                NavigationGroup::make()->label('RecommenderResult')->collapsed(),
             ])
             ->discoverResources(in: app_path('Filament/Admin/Resources'), for: 'App\\Filament\\Admin\\Resources')
             ->discoverPages(in: app_path('Filament/Admin/Pages'), for: 'App\\Filament\\Admin\\Pages')
@@ -75,6 +76,7 @@ class AdminPanelProvider extends PanelProvider
                     ]),
             ])
             ->databaseNotifications()
-            ->databaseNotificationsPolling('10s');
+            ->databaseNotificationsPolling('10s')
+            ->sidebarCollapsibleOnDesktop();
     }
 }
