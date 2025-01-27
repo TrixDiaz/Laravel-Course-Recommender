@@ -19,8 +19,28 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory(10)->create();
-        Course::factory(10)->create();
-        Skill::factory(10)->create();
+        $courses = Course::factory(5)->create([
+            'is_active' => true,
+            'required_average' => 80
+        ]);
+
+        // Create skills
+        $skills = Skill::factory(5)->create([
+            'is_active' => true
+        ]);
+
+        // Create course level skills relationships
+        foreach ($courses as $course) {
+            foreach ($skills as $skill) {
+                \App\Models\CourseLevelSkill::create([
+                    'course_id' => $course->id,
+                    'skill_id' => $skill->id,
+                    'course_level_id' => CourseLevel::factory()->create([
+                        'course_id' => $course->id
+                    ])->id
+                ]);
+            }
+        }
         Feedback::factory(10)->create();
         CourseLevel::factory(10)->create();
 

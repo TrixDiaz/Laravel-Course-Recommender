@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('course_code');
             $table->string ('course_description');
-            $table->float('required_average');
+            $table->float('required_average')->nullable();
             $table->boolean('is_active')->default(true);
             $table->softDeletes();
             $table->timestamps();

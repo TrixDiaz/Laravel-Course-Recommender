@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('course_level_skills', function (Blueprint $table) {
+        Schema::create('counters', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('course_level_id')->constrained('course_levels')->onDelete('cascade');
-            $table->foreignId('skill_id')->constrained('skills')->onDelete('cascade');
-            $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
+            $table->string('ip_address')->nullable();
+            $table->string('user_agent')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('course_level_skills');
+        Schema::dropIfExists('counters');
     }
 };

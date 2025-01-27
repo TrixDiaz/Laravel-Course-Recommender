@@ -1,9 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Counter;
 
 Route::get('/', function () {
-    return view('welcome');
+    Counter::logVisit();
+    return view('welcome',  [
+        'totalVisits' => Counter::getTotalVisits()
+    ]);
 })->name('home');
 
 Route::get('about-us', function () {
