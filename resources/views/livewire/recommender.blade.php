@@ -91,7 +91,7 @@
                             <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Courses You Qualify For:</h3>
                             <ul class="list-disc list-inside">
                                 @foreach($qualifiedCourses as $course)
-                                <li class="dark:text-white">{{ $course->name }} (Code: {{ $course->course_code }})</li>
+                                <li class="dark:text-white">{{ $course->name }} ({{ $course->course_code }})</li>
                                 @endforeach
                             </ul>
                             <button wire:click="closeModal"

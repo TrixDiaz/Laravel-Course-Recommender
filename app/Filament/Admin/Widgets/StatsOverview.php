@@ -4,7 +4,7 @@ namespace App\Filament\Admin\Widgets;
 
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
-
+use App\Models\Counter;
 
 class StatsOverview extends BaseWidget
 {
@@ -14,10 +14,10 @@ class StatsOverview extends BaseWidget
     protected static ?int $sort = 2;
     protected function getStats(): array
     {
+       $visitors = Counter::all()->count();
         return [
-            Stat::make('Unique views', '192.1k')
-                ->description('32k increase')
-                ->descriptionIcon('heroicon-m-arrow-trending-up')
+            Stat::make('Visitor', $visitors)
+                ->description('Total count of Visitors')
                 ->color('success'),
             Stat::make('Bounce rate', '21%')
                 ->description('7% increase')
