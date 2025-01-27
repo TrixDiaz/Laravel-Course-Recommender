@@ -17,7 +17,7 @@ class CourseLevel extends Model
 
     public function course(): BelongsTo
     {
-        return $this->belongsTo(Course::class);
+        return $this->belongsTo(Course::class)->where('is_active', true);
     }
 
     public function skills(): BelongsToMany

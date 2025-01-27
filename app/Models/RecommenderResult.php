@@ -15,4 +15,9 @@ class RecommenderResult extends Model
     {
         return $this->belongsToMany(Course::class, 'recommender_result_courses', 'recommender_result_id', 'course_id');
     }
+
+    public function skills()
+    {
+        return $this->belongsToMany(Skill::class, 'recommender_result_skills');
+    }
 }

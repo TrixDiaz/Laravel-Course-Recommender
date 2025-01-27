@@ -13,7 +13,9 @@ class Skill extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $guarded = [
+    protected $guarded = [];
+
+    protected $casts = [
         'is_active' => 'boolean',
     ];
 

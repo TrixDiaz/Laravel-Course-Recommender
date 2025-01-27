@@ -18,11 +18,11 @@ class CourseLevelSkill extends Model
 
     public function skill()
     {
-        return $this->belongsTo(Skill::class);
+        return $this->belongsTo(Skill::class)->where('is_active', true);
     }
 
     public function course()
     {
-        return $this->belongsTo(Course::class);
+        return $this->belongsTo(Course::class)->where('is_active', true);
     }
 }
