@@ -47,6 +47,8 @@ class Recommender extends Component
                 $query->whereIn('skill_id', $this->skills)
                     ->where('is_active', true);
             })
+            ->orderBy('required_average', 'desc') // Order by required average in descending order
+            ->take(3) // Limit to top 3 courses
             ->get();
 
         // Attach the recommended courses to the recommender result

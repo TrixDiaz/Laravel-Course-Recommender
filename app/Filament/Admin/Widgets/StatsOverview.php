@@ -5,6 +5,8 @@ namespace App\Filament\Admin\Widgets;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use App\Models\Counter;
+use App\Models\Feedback;
+use App\Models\RecommenderResult;
 
 class StatsOverview extends BaseWidget
 {
@@ -14,18 +16,18 @@ class StatsOverview extends BaseWidget
     protected static ?int $sort = 2;
     protected function getStats(): array
     {
-       $visitors = Counter::all()->count();
+        $visitors = Counter::all()->count();
+        $feedback = Feedback::all()->count();
+        $participant = RecommenderResult::all()->count();
         return [
             Stat::make('Visitor', $visitors)
                 ->description('Total count of Visitors')
                 ->color('success'),
-            Stat::make('Bounce rate', '21%')
-                ->description('7% increase')
-                ->descriptionIcon('heroicon-m-arrow-trending-down')
-                ->color('danger'),
-            Stat::make('Average time on page', '3:12')
-                ->description('3% increase')
-                ->descriptionIcon('heroicon-m-arrow-trending-up')
+            Stat::make('Feedback', $feedback)
+                ->description('Total Feedback from User')
+                ->color('warning'),
+            Stat::make('Participant', $participant)
+                ->description('Total Participant')
                 ->color('success'),
         ];
     }

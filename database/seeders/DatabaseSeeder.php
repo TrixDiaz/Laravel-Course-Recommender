@@ -33,7 +33,6 @@ class DatabaseSeeder extends Seeder
         foreach ($courses as $course) {
             foreach ($skills as $skill) {
                 \App\Models\CourseLevelSkill::create([
-                    'course_id' => $course->id,
                     'skill_id' => $skill->id,
                     'course_level_id' => CourseLevel::factory()->create([
                         'course_id' => $course->id

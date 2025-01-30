@@ -11,6 +11,8 @@ class CourseLevelSkill extends Model
 
     protected $guarded = [];
 
+    public $table = 'course_level_skills';
+
     public function courseLevel()
     {
         return $this->belongsTo(CourseLevel::class);
@@ -18,11 +20,11 @@ class CourseLevelSkill extends Model
 
     public function skill()
     {
-        return $this->belongsTo(Skill::class)->where('is_active', true);
+        return $this->belongsTo(Skill::class);
     }
 
     public function course()
     {
-        return $this->belongsTo(Course::class)->where('is_active', true);
+        return $this->belongsTo(Course::class);
     }
 }

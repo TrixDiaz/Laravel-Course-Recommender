@@ -20,7 +20,7 @@ class FeedbackFactory extends Factory
             'name' => fake()->name,
             'email' => fake()->unique()->safeEmail,
             'subject' => fake()->sentence,
-            'message' => fake()->paragraph,
+            'message' => fake()->sentence,
         ];
     }
 }
