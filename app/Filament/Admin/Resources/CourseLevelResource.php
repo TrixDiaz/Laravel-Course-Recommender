@@ -21,14 +21,17 @@ class CourseLevelResource extends Resource
     protected static ?string $navigationLabel = 'Course Level';
     protected static ?string $navigationIcon = 'heroicon-o-building-office';
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\Section::make()
                     ->schema([
-                        Forms\Components\TextInput::make('name')
-                            ->required(),
                         Forms\Components\Select::make('course_id')
                             ->relationship('course', 'name')
                             ->required()
@@ -48,6 +51,8 @@ class CourseLevelResource extends Resource
                             ->step(0.001)
                             ->required()
                             ->numeric(),
+                        Forms\Components\TextInput::make('name')
+                           ->label('Course Level Name (optional)'),
                     ])->columns(2),
             ]);
     }

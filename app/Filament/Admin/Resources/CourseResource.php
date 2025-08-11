@@ -21,6 +21,11 @@ class CourseResource extends Resource
     protected static ?string $navigationLabel = 'Course';
     protected static ?string $navigationIcon = 'heroicon-o-book-open';
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -45,9 +50,9 @@ class CourseResource extends Resource
                 Forms\Components\Section::make()
                     ->schema([
                         Forms\Components\Textarea::make('course_description')
-                            ->label('Course Description')
-                            ->required()
+                            ->label('Course Description (optional)')
                             ->maxLength(255)
+                            ->placeholder("Optional")
                             ->columnSpanFull(),
                     ]),
             ]);

@@ -21,6 +21,10 @@ class UserResource extends Resource
     protected static ?string $navigationLabel = 'User';
     protected static ?string $navigationIcon = 'heroicon-o-finger-print';
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
     public static function form(Form $form): Form
     {
         return $form

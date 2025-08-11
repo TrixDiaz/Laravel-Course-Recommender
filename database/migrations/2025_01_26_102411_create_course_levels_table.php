@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('course_levels', function (Blueprint $table) {
             $table->id();
             $table->foreignId('course_id')->constrained()->onDelete('cascade');
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->float('level');
             $table->boolean('is_active')->default(true);
             $table->timestamps();

@@ -87,9 +87,10 @@ class WeeklyReviewChart extends ApexChartWidget
      */
     protected function getWeeklyVisitCounts(): array
     {
-        // Use strftime to get the week number (in the format 00 to 52)
+        // Use WEEK() in MySQL to get the week number
         $weeklyVisits = Counter::query()
-            ->selectRaw("strftime('%W', created_at) as week, COUNT(*) as visits")
+            ->selectRaw("WEEK(created_at, 3) as week, COUNT(*) as visits")
+            // mode 3 = ISO 8601 week numbering (weeks start on Monday)
             ->whereBetween('created_at', [
                 Carbon::now()->startOfYear(),
                 Carbon::now()->endOfYear(),
@@ -100,13 +101,14 @@ class WeeklyReviewChart extends ApexChartWidget
 
         // Fill the data with zero for missing weeks
         $data = [];
-        for ($week = 0; $week < 12; $week++) { // Use week numbers from 0 to 11 (12 months)
-            $weekData = $weeklyVisits->firstWhere('week', str_pad($week, 2, '0', STR_PAD_LEFT)); // Ensure the week number is 2 digits
-            $data[] = $weekData ? $weekData->visits : 0; // Add visits or 0 if no visits in that week
+        for ($week = 1; $week <= 12; $week++) { // You’re mapping to months (12 slots)
+            $weekData = $weeklyVisits->firstWhere('week', $week);
+            $data[] = $weekData ? $weekData->visits : 0;
         }
 
         return $data;
     }
+
 
 
     /**

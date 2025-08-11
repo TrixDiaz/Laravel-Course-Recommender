@@ -22,6 +22,11 @@ class SkillResource extends Resource
     protected static ?string $navigationLabel = 'Skill';
     protected static ?string $navigationIcon = 'heroicon-o-cube-transparent';
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -30,7 +35,8 @@ class SkillResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('name')
                             ->required(),
-                        Forms\Components\TextInput::make('description'),
+                        Forms\Components\TextInput::make('description')
+                            ->label('Description (optional)'),
                     ])->columns(2),
             ]);
     }

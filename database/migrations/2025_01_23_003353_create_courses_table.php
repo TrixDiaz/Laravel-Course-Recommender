@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('course_code');
-            $table->string ('course_description');
+            $table->string ('course_description')->nullable();
             $table->float('required_average')->nullable();
             $table->boolean('is_active')->default(true);
             $table->softDeletes();

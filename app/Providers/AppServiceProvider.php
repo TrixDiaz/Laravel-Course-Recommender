@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        \Filament\Resources\Pages\CreateRecord::disableCreateAnother();
-        \Filament\Actions\CreateAction::configureUsing(fn(CreateAction $action) => $action->createAnother(false));
+//        \Filament\Resources\Pages\CreateRecord::disableCreateAnother();
+//        \Filament\Actions\CreateAction::configureUsing(fn(CreateAction $action) => $action->createAnother(false));
     }
 }
