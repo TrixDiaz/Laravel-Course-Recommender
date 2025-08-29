@@ -43,9 +43,9 @@ class Recommender extends Component
 
         // Find courses that match the average and skills
         $this->qualifiedCourses = Course::where('required_average', '<=', $this->average)
-            ->whereHas('courseLevelSkill', function ($query) {
-                $query->whereIn('skill_id', $this->skills)
-                    ->where('is_active', true);
+            ->whereHas('levels.skills', function ($query) {
+                $query->whereIn('skills.id', $this->skills)
+                    ->where('skills.is_active', true);
             })
             ->orderBy('required_average', 'desc') // Order by required average in descending order
             ->take(3) // Limit to top 3 courses

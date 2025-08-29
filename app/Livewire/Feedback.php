@@ -38,15 +38,16 @@ class Feedback extends Component
 
         flash()->success('Feedback submitted successfully!');
 
-        $user = \App\Models\User::all();
+        $user = \App\Models\User::where('email', 'admin@example.com')->first();
 
         Notification::make()
             ->success()
-            ->icon('heroicon-o-chat-alt')
+            ->icon('heroicon-o-information-circle')
             ->title('New Feedback!')
             ->body('Check the new Feedback!')
-            ->actions([\Filament\Actions\Action::make('View')->url(FeedbackResource::getUrl('edit', ['record' => $this->feedback->id]))])
             ->sendToDatabase($user);
+
+        return redirect()->back();
     }
 
     public function render()

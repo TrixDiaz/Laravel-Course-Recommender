@@ -31,8 +31,8 @@ class FeedbackResource extends Resource
             ->schema([
                 Forms\Components\Section::make()
                     ->schema([
-                       Forms\Components\TextInput::make('message')
-                        ->disabled()
+                        Forms\Components\TextInput::make('message')
+                            ->disabled()
                     ]),
             ]);
     }
@@ -43,12 +43,13 @@ class FeedbackResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('Information')
                     ->searchable(['name', 'email'])
-                    ->default(fn (Feedback $record) => $record->email)
+                    ->default(fn(Feedback $record) => $record->email)
                     ->description(fn(Feedback $record) => $record->name)
                     ->icon('heroicon-m-envelope')
                     ->color('secondary'),
                 Tables\Columns\TextColumn::make('subject')
-                    ->description(fn(Feedback $record) => implode(' ', array_slice(explode(' ', $record->message), 0, 6)) // Limit to 6 words
+                    ->description(
+                        fn(Feedback $record) => implode(' ', array_slice(explode(' ', $record->message), 0, 6)) // Limit to 6 words
                     )
                     ->words(6),
                 Tables\Columns\TextColumn::make('created_at')
@@ -87,8 +88,8 @@ class FeedbackResource extends Resource
     {
         return [
             'index' => Pages\ListFeedback::route('/'),
-//            'create' => Pages\CreateFeedback::route('/create'),
-//            'edit' => Pages\EditFeedback::route('/{record}/edit'),
+            //            'create' => Pages\CreateFeedback::route('/create'),
+            //            'edit' => Pages\EditFeedback::route('/{record}/edit'),
         ];
     }
 }

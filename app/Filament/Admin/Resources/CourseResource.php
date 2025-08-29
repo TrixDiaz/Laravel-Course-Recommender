@@ -65,8 +65,8 @@ class CourseResource extends Resource
                 Tables\Columns\TextColumn::make('Course Information')
                     ->sortable()
                     ->default(fn(Course $record): string => $record->name . ' - ' . $record->course_code)
-                    ->searchable(['name, course_code'])
-                    ->description(fn(Course $record): string => $record->course_description)
+                    ->searchable(['name', 'course_code'])
+                    ->description(fn(Course $record): string => $record->course_description ?? '')
                     ->words(6),
                 Tables\Columns\TextColumn::make('required_average')
                     ->label('Required Average')
